@@ -45,8 +45,13 @@
 #define GOOGLE_PROTOBUF_ARCH_IA32 1
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
 #elif defined(__QNX__)
+#if defined(__aarch64__)
+#define GOOGLE_PROTOBUF_ARCH_AARCH64 1
+#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
+#else
 #define GOOGLE_PROTOBUF_ARCH_ARM_QNX 1
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
+#endif
 #elif defined(__ARMEL__)
 #define GOOGLE_PROTOBUF_ARCH_ARM 1
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
@@ -114,7 +119,7 @@ GOOGLE_PROTOBUF_PLATFORM_ERROR
 
 #undef GOOGLE_PROTOBUF_PLATFORM_ERROR
 
-#if defined(GOOGLE_PROTOBUF_OS_ANDROID) || defined(GOOGLE_PROTOBUF_OS_IPHONE)
+#if defined(GOOGLE_PROTOBUF_OS_ANDROID) || defined(GOOGLE_PROTOBUF_OS_IPHONE) || defined(__QNX__)
 // Android ndk does not support the __thread keyword very well yet. Here
 // we use pthread_key_create()/pthread_getspecific()/... methods for
 // TLS support on android.

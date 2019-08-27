@@ -36,7 +36,9 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #ifdef _MSC_VER
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN  // yeah, right
+#endif
 #include <windows.h>         // Find*File().  :(
 #include <io.h>
 #include <direct.h>

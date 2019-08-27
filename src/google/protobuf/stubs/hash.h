@@ -44,8 +44,13 @@
 // Android
 #if defined(__ANDROID__)
 # undef GOOGLE_PROTOBUF_HAVE_HASH_MAP
-# undef GOOGLE_PROTOBUF_HAVE_HASH_MAP
+# undef GOOGLE_PROTOBUF_HAVE_HASH_SET
 
+#elif defined(__QNX__)
+
+# undef GOOGLE_PROTOBUF_HAVE_HASH_MAP
+# undef GOOGLE_PROTOBUF_HAVE_HASH_SET
+                                     
 // Use C++11 unordered_{map|set} if available.
 #elif ((_LIBCPP_STD_VER >= 11) || \
       (((__cplusplus >= 201103L) || defined(__GXX_EXPERIMENTAL_CXX0X)) && \

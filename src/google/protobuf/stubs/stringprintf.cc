@@ -52,6 +52,16 @@ enum { IS_COMPILER_MSVC = 1 };
 enum { IS_COMPILER_MSVC = 0 };
 #endif
 
+// fallback to historic macro name in case of non-C99-standard-conform compiler
+#if !defined(va_copy) && defined(__va_copy)
+   #define va_copy __va_copy
+#endif
+
+// give up
+#if !defined(va_copy)
+   #error something is wrong. your header <stdarg.h> does not declare macro va_copy. are you really compiling in C99 (or higher) mode?
+#endif
+
 void StringAppendV(string* dst, const char* format, va_list ap) {
   // First try with a small fixed size buffer
   static const int kSpaceLength = 1024;
